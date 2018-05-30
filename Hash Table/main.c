@@ -21,26 +21,26 @@ int main (int argc, const char * argv[]) {
     struct timeval stop, start; /* variables for measuring execution time */
 
     /* you can manually type in your
-     filename and path in command line arguments 
+     filename and path in command line arguments
      */
     if(argc == 2)
         filename = argv[1]; /*specify your input text file here */
     else
-        filename = "input.txt"; 
-    
+        filename = "input.txt";
+
     printf("opening file: %s\n", filename);
-    
+
     gettimeofday(&start, NULL);
-	
-    
-   
-	
+
+
+
+
     /*... concordance code goes here ... */
-    /* FIX ME */
+    /* FIXME */
 
     /* - Initialize the Hash table
-       - In the loop 
-           - Read a word from the file using getWord() 
+       - In the loop
+           - Read a word from the file using getWord()
            - Add the word to Hash table
            - Update concordance
         - End the loop
@@ -52,11 +52,11 @@ int main (int argc, const char * argv[]) {
     /* Print out the resulting Hash table and concordance */
     for(i=0;i < hashTable.tableSize; i++){
 	temp = hashTable.table[i];
-			
+
 	while(temp!=0){
 	   printf("%s:%d\n", temp->key,temp->value);
 	   temp=temp->next;
-			
+
 	}
     }
 
@@ -77,22 +77,22 @@ int main (int argc, const char * argv[]) {
  getWord takes a FILE pointer and returns a string which was
  the next word in the file. Words are defined (by this function) to be
  characters or numbers separated by periods, spaces, or newlines.
- 
+
  When there are no more words in the input file this function will return NULL.
- 
- getWord will malloc some memory for the char* it returns. 
+
+ getWord will malloc some memory for the char* it returns.
  Free this memory when you no longer need it.
 */
 char* getWord(FILE *file)
 {
-	
+
 	int length = 0;
 	int maxLength = 16;
 	char character;
-    
+
 	char* word = (char*)malloc(sizeof(char) * maxLength);
 	assert(word != NULL);
-    
+
 	while( (character = fgetc(file)) != EOF)
 	{
 		if((length+1) > maxLength)
@@ -111,7 +111,7 @@ char* getWord(FILE *file)
 		else if(length > 0)
 			break;
 	}
-    
+
 	if(length == 0)
 	{
 		free(word);

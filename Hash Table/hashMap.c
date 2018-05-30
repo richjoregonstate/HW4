@@ -24,12 +24,12 @@ int stringHash2(char * str)
 void initMap (struct hashMap * ht, int tableSize)
 {
 
-  /* FIX ME */
+  /* FIXME */
 
 }
 
 void freeMap (struct hashMap * ht)
-{  
+{
 	int i;
 	struct hashLink *temp;
 	struct hashLink *temp2;
@@ -44,30 +44,30 @@ void freeMap (struct hashMap * ht)
 	free(ht->table);
 	ht->count=0;
 	ht->table=0;
-	ht->tableSize=0;	
+	ht->tableSize=0;
 }
 
 /* Add an element to the Hash Table */
 void insertMap (struct hashMap * ht, KeyType k, ValueType v)
-{  
+{
 
-    /* FIX ME */
+    /* FIXME */
 
 }
 
 
 
-/* Returns a pointer to the value of element with key k in the Hash Table 
-   If the element is not in the Hash Table, returns NULL */ 
+/* Returns a pointer to the value of element with key k in the Hash Table
+   If the element is not in the Hash Table, returns NULL */
 ValueType* atMap (struct hashMap * ht, KeyType k)
-{ 
+{
 
-    /* FIX ME */
-	
+    /* FIXME */
+
 }
 
 int containsKey (struct hashMap * ht, KeyType k)
-{  
+{
 	if (atMap(ht,k)==0){
 		return 0;
 	}else{
@@ -76,10 +76,10 @@ int containsKey (struct hashMap * ht, KeyType k)
 }
 
 void removeKey (struct hashMap * ht, KeyType k)
-{  
+{
 	int bucket = stringHash2(k)%ht->tableSize;
-	struct hashLink *cur; 
-	struct hashLink *prev;  
+	struct hashLink *cur;
+	struct hashLink *prev;
 	if(ht->table[bucket] == 0){
 		return;
 	}else{
@@ -89,7 +89,7 @@ void removeKey (struct hashMap * ht, KeyType k)
 			if(strcmp(cur->key,k)==0){
 				if(cur==ht->table[bucket]){
 					ht->table[bucket]=cur->next;
-					
+
 				}else{
 				prev->next=cur->next;
 				}
@@ -99,23 +99,23 @@ void removeKey (struct hashMap * ht, KeyType k)
 			}else{
 				prev=cur;
 				cur=cur->next;
-			} 
+			}
 		}
 	}
 }
 
 int sizeMap (struct hashMap *ht)
-{  
+{
 	return ht->count;
 }
 
 int capacityMap(struct hashMap *ht)
-{  
+{
 	return ht->tableSize;
 }
 
 int emptyBuckets(struct hashMap *ht)
-{  
+{
 	int runner = 0;
 	int i;
 	for(i=0; i<ht->tableSize; i++){
@@ -127,6 +127,6 @@ int emptyBuckets(struct hashMap *ht)
 }
 
 float tableLoad(struct hashMap *ht)
-{  
+{
    return (float)sizeMap(ht)/(float)capacityMap(ht);
 }

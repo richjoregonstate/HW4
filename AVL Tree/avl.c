@@ -113,14 +113,31 @@ struct AVLnode * _balance(struct AVLnode * current)
 	return current;
 }
 
+struct AVLnode * createNewNode(TYPE newValue){
+	struct AVLnode * node = (struct AVLnode *)malloc(sizeof(struct AVLnode));
+	node->val = newValue;
+	node->left = NULL;
+	node->right = NULL;
+	node->height = 0;
+	return(node);
+}
+
+
 /* add newValue to subtree of current node */
-struct AVLnode * AVLnodeAdd(struct	AVLnode * current, TYPE newValue)
-{
+struct AVLnode * AVLnodeAdd(struct	AVLnode * current, TYPE newValue)/* FIXME */{
+	int balance;
+	if (current == NULL) {
+		return(createNewNode(newValue));
+	}
 
+	if(newValue <= current->val){
+		current->left = AVLnodeAdd(current->left,newValue);
+	}
+	else if (newValue > current->val ) {
+		current->right = AVLnodeAdd(current->right,newValue);
+	}
 
-     /* FIXME */
-
-
+	_balance(current);
 
 }
 
