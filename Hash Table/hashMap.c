@@ -21,10 +21,15 @@ int stringHash2(char * str)
 	return r;
 }
 
-void initMap (struct hashMap * ht, int tableSize)
+void initMap (struct hashMap * ht, int tableSize)/* FIXME */
 {
-
-  /* FIXME */
+	int index;
+	ht->table = (struct hashLink **) malloc(sizeof(struct hashLink)*tableSize);
+	ht->tableSize=0;
+	ht->count=0;
+	for (index = 0; index < tableSize; index++) {
+		ht->table[index] = 0;
+	}
 
 }
 

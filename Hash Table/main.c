@@ -14,9 +14,10 @@ int main (int argc, const char * argv[]) {
     struct hashMap hashTable;
     struct hashLink *temp;
     char *tempK;
+    char *tempKey;
     int tableSize = 1000;
     FILE *fileptr;
-    int *occ;
+    int *occ;tree
     int i;
     struct timeval stop, start; /* variables for measuring execution time */
 
@@ -37,7 +38,14 @@ int main (int argc, const char * argv[]) {
 
     /*... concordance code goes here ... */
     /* FIXME */
-
+    initMap(hashTable,tableSize);
+    while((fscanf(filename, "%i", &tempK)) != EOF){
+      tempKey=stringHash1();
+      if (atMap()) {
+        /* code */
+      }
+      insertMap(num, i);
+    }
     /* - Initialize the Hash table
        - In the loop
            - Read a word from the file using getWord()
