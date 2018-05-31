@@ -14,11 +14,11 @@ int main (int argc, const char * argv[]) {
     struct hashMap hashTable;
     struct hashLink *temp;
     char *tempK;
-    char *tempKey;
     int tableSize = 1000;
     FILE *fileptr;
-    int *occ;tree
+    int *occ;
     int i;
+    int total;
     struct timeval stop, start; /* variables for measuring execution time */
 
     /* you can manually type in your
@@ -38,13 +38,13 @@ int main (int argc, const char * argv[]) {
 
     /*... concordance code goes here ... */
     /* FIXME */
-    initMap(hashTable,tableSize);
-    while((fscanf(filename, "%i", &tempK)) != EOF){
-      tempKey=stringHash1();
-      if (atMap()) {
-        /* code */
-      }
-      insertMap(num, i);
+    fileptr = fopen(filename,"r");
+
+    initMap(&hashTable,tableSize);
+    tempK = getWord(fileptr);
+    while (tempK != NULL){
+      insertMap(&hashTable,tempK,0);
+      tempK = getWord(fileptr);
     }
     /* - Initialize the Hash table
        - In the loop
@@ -53,19 +53,15 @@ int main (int argc, const char * argv[]) {
            - Update concordance
         - End the loop
     */
-
     /* Close the file */
     fclose(fileptr);
-
     /* Print out the resulting Hash table and concordance */
-    for(i=0;i < hashTable.tableSize; i++){
-	temp = hashTable.table[i];
-
-	while(temp!=0){
-	   printf("%s:%d\n", temp->key,temp->value);
-	   temp=temp->next;
-
-	}
+    for(i=0;i < tableSize; i++){
+      temp = hashTable.table[i];
+      if (temp!=0) {
+        total++;
+        printf("%s:%d:%d\n", temp->key,temp->value,total);
+      }
     }
 
 

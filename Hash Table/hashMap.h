@@ -47,7 +47,7 @@ void freeMap (struct hashMap * ht);
  insert the following values into a hashLink, you must create this hashLink but
  only after you confirm that this key does not already exist in the table. you
  cannot have two hashLinks for the word "taco".
- 
+
  if a hashLink already exists in the table for the key provided you should
  replace that hashLink (really this only requires replacing the value v).
  */
@@ -55,11 +55,11 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v);
 
 /*
  this returns a POINTER to the value stored in a hashLink specified by the key k.
- 
+
  if the user supplies the key "taco" you should find taco in the hashTable, then
  return a pointer to the value member of the hashLink that represents taco. keep
  in mind we are storing an int for value, so you don't use malloc or anything.
- 
+
  if the supplied key is not in the hashtable return NULL.
  */
 ValueType* atMap (struct hashMap * ht, KeyType k);
@@ -96,7 +96,7 @@ int emptyBuckets(struct hashMap *ht);
 
 /*
  returns the ratio of: (number of hashlinks) / (number of buckets)
- 
+
  this value can range anywhere from zero (an empty table) to more then 1, which
  would mean that there are more hashlinks then buckets (but remember hashlinks
  are like linked list nodes so they can hang from each other)

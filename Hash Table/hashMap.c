@@ -53,10 +53,41 @@ void freeMap (struct hashMap * ht)
 }
 
 /* Add an element to the Hash Table */
-void insertMap (struct hashMap * ht, KeyType k, ValueType v)
+void insertMap (struct hashMap * ht, KeyType k, ValueType v)/* FIXME */
 {
+	struct hashLink *newLink = (struct hashLink *) malloc(sizeof(struct hashLink));
+	struct hashLink *current;
+	int idx;
+	newLink->key = k;
+	idx = stringHash1(k);
+	newLink->key = k;
+	newLink->value = 0;
+	newLink->next = 0;
 
-    /* FIXME */
+	/*printf("Key: %d Word: %s	|		", idx,k);*/
+	/*
+	while (ht->table[idx] == 0 && ht->table[idx]->key != k) {
+		printf("!!!SHIFT!!!");
+		idx++;
+	}*/
+
+	if (ht->table[idx] == 0){
+		/*printf("No collsion");*/
+		ht->table[idx] = newLink;
+		ht->tableSize++;
+	}
+	else{
+		current = ht->table[idx];
+		current->value++;
+		/*printf("Collsion w/ 1 + %d",ht->table[idx]->value);*/
+		while (current->next != 0) {/*go to the end of the linked list incrmenting the nodes on your way in*/
+			current = current->next;
+			current->value++;
+		}
+		current->next = newLink;
+	}
+	/*printf("\n\n");*/
+	ht->count++;
 
 }
 
@@ -64,10 +95,21 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 
 /* Returns a pointer to the value of element with key k in the Hash Table
    If the element is not in the Hash Table, returns NULL */
-ValueType* atMap (struct hashMap * ht, KeyType k)
+ValueType* atMap (struct hashMap * ht, KeyType k)/* FIXME */
 {
+	int idx;
+	idx = stringHash1(k);
 
-    /* FIXME */
+	while (ht->table[idx] != 0 && ht->table[idx]->key != k) {/* If we hit 0 then we insert. If we hit a copy then insert.*/
+		idx++;
+	}
+
+	if (ht->table[idx] == 0){
+		return NULL;
+	}
+	else{
+		return (int*)ht->table[idx]->value;
+	}
 
 }
 
